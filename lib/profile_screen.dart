@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kerlingo_flutter_app/assets/app_strings.dart';
+import 'package:kerlingo_flutter_app/assets/app_typography.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -8,7 +10,10 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Профиль"),
+        title: Text(
+          AppString.profile,
+          //style: AppTypography.text18Bold,
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {},
@@ -16,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {},
-            child: Text("Save"),
+            child: Text(AppString.save),
           ),
         ],
       ),
@@ -36,13 +41,13 @@ class ProfileScreen extends StatelessWidget {
                 width: 80,
                 child: Center(
                   child: Text(
-                    "Edit",
+                    AppString.edit,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
               SizedBox(height: 24),
-              Text("Мои награды"),
+              Text(AppString.rewards),
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
