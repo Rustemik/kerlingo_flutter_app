@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kerlingo_flutter_app/assets/app_colors.dart';
 import 'package:kerlingo_flutter_app/assets/app_strings.dart';
 import 'package:kerlingo_flutter_app/assets/app_typography.dart';
 import 'package:kerlingo_flutter_app/assets/components/property_item.dart';
+import 'package:kerlingo_flutter_app/bloc/theme_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -64,6 +66,13 @@ class ProfileScreen extends StatelessWidget {
                   Text("🥈", style: TextStyle(fontSize: 32)),
                   SizedBox(width: 16),
                   Text("🥉", style: TextStyle(fontSize: 32)),
+                  Switch(
+                    value:
+                        context.read<ThemeBloc>().state.mode == ThemeMode.dark,
+                    onChanged: (value) {
+                      context.read<ThemeBloc>().add(ThemeChanged(value));
+                    },
+                  ),
                 ],
               ),
               SizedBox(height: 24),
