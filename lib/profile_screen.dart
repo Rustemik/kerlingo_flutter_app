@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kerlingo_flutter_app/assets/app_colors.dart';
 import 'package:kerlingo_flutter_app/assets/app_strings.dart';
 import 'package:kerlingo_flutter_app/assets/app_typography.dart';
+import 'package:kerlingo_flutter_app/assets/components/custom_radio.dart';
 import 'package:kerlingo_flutter_app/assets/components/property_item.dart';
+import 'package:kerlingo_flutter_app/assets/components/theme_picker.dart';
 import 'package:kerlingo_flutter_app/bloc/theme_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -66,13 +68,13 @@ class ProfileScreen extends StatelessWidget {
                   Text("🥈", style: TextStyle(fontSize: 32)),
                   SizedBox(width: 16),
                   Text("🥉", style: TextStyle(fontSize: 32)),
-                  Switch(
-                    value:
-                        context.read<ThemeBloc>().state.mode == ThemeMode.dark,
-                    onChanged: (value) {
-                      context.read<ThemeBloc>().add(ThemeChanged(value));
-                    },
-                  ),
+                  // Switch(
+                  //   value:
+                  //       context.read<ThemeBloc>().state.mode == ThemeMode.dark,
+                  //   onChanged: (value) {
+                  //     context.read<ThemeBloc>().add(ThemeChanged(value));
+                  //   },
+                  // ),
                 ],
               ),
               SizedBox(height: 24),
@@ -107,9 +109,15 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: 8),
                   PropertyItem(
                     title: AppString.theme,
-                    value: "Системная",
-                    onPressed: () {},
-                  ),
+                    value:
+                        context.read<ThemeBloc>().state.mode == ThemeMode.dark
+                            ? "Темная"
+                            : "Светлая",
+                    onPressed: () => showModalBottomSheet(
+                      context: context,
+                      builder: (context) => ThemePicker(),
+                    ),
+                  )
                 ],
               ),
               Expanded(
